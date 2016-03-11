@@ -3,6 +3,7 @@ defmodule BblogPhoenix.PostController do
 
   alias BblogPhoenix.Post
 
+
   plug :scrub_params, "post" when action in [:create, :update]
 
   def index(conn, _params) do

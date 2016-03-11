@@ -4,7 +4,7 @@ defmodule BblogPhoenix.Post do
   schema "posts" do
     field :title, :string
     field :body, :string
-    
+
     has_many :comments, BlogPhoenix.Comment
 
 

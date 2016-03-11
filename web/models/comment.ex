@@ -9,13 +9,12 @@ defmodule BblogPhoenix.Comment do
     timestamps
   end
 
-  @required_fields ~w(name content)
+  @required_fields ~w(name content post_id)
   @optional_fields ~w()
 
   @doc """
   Creates a changeset based on the `model` and `params`.
-
-  If no params are provided, an invalid changeset is returned
+  If `params` are nil, an invalid changeset is returned
   with no validation performed.
   """
   def changeset(model, params \\ :empty) do
