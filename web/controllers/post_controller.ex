@@ -32,9 +32,9 @@ defmodule BblogPhoenix.PostController do
   end
 
   def show(conn, %{"id" => id}) do
-    post = Repo.get!(Post, id)
+    post = Repo.get(Post, id) |> Repo.preload([:comments])
     changeset = Comment.changeset(%Comment{})
-    render(conn, "show.html", post: post)
+    render(conn, "show.html", post: post, changeset: changeset)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -69,17 +69,17 @@ defmodule BblogPhoenix.PostController do
     |> redirect(to: post_path(conn, :index))
   end
   def add_comment(conn, %{"comment" => comment_params, "post_id" => post_id}) do
-  changeset = Comment.changeset(%Comment{}, Map.put(comment_params, "post_id", post_id))
-  post = Post |> Repo.get(post_id) |> Repo.preload([:comments])
+    changeset = Comment.changeset(%Comment{}, Map.put(comment_params, "post_id", post_id))
+    post = Repo.get(Post, post_id) |> Repo.preload([:comments])
 
-  if changeset.valid? do
-    Repo.insert(changeset)
+    if changeset.valid? do
+      Repo.insert(changeset)
 
-    conn
-    |> put_flash(:info, "Comment added.")
-    |> redirect(to: post_path(conn, :show, post))
-  else
-    render(conn, "show.html", post: post, changeset: changeset)
+      conn
+      |> put_flash(:info, "Comment added.")
+      |> redirect(to: post_path(conn, :show, post))
+    else
+      render(conn, "show.html", post: post, changeset: changeset)
+    end
   end
-end
 end
