@@ -27,7 +27,7 @@ config :bblog_phoenix, BblogPhoenix.Endpoint,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
   pool_size: 20
-  
+
 
 # Do not print debug messages in production
 config :logger, level: :info
@@ -75,4 +75,3 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
-import_config "prod.secret.exs"
