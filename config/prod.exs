@@ -30,7 +30,7 @@ config :bblog_phoenix, BblogPhoenix.Repo,
 
 
 # Do not print debug messages in production
-config :logger, level: :info
+# config :logger, level: :info
 
 # ## SSL Support
 #
