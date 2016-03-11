@@ -33,6 +33,7 @@ defmodule BblogPhoenix.PostController do
 
   def show(conn, %{"id" => id}) do
     post = Repo.get!(Post, id)
+    changeset = Comment.changeset(%Comment{})
     render(conn, "show.html", post: post)
   end
 
@@ -81,5 +82,4 @@ defmodule BblogPhoenix.PostController do
     render(conn, "show.html", post: post, changeset: changeset)
   end
 end
-
 end
