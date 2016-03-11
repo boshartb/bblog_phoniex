@@ -1,25 +1,6 @@
-<h2>Listing posts</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Comments</th>
+<h2>New post</h2>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for {post, count} <- @posts do %>
-    <tr>
-      <td><%= post.title %></td>
-      <td><%= count %></td>
+<%= render "form.html", changeset: @changeset,
+                        action: post_path(@conn, :create) %>
 
-      <td class="text-right">
-        <%= link "Show", to: post_path(@conn, :show, post), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: post_path(@conn, :edit, post), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: post_path(@conn, :delete, post), method: :delete, class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
+<%= link "Back", to: post_path(@conn, :index) %>
