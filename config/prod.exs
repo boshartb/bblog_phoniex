@@ -23,7 +23,7 @@ http: [port: {:system, "PORT"}],
 config :logger, level: :info
 
 # Configure your database
-config :Bblog_phoenix, BblogPhoenix.Repo,
+config :bblog_phoenix, BblogPhoenix.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
   pool_size: 20
